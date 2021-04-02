@@ -25,19 +25,28 @@ class App extends Component {
   nameChangeHandler = (event) => {
     this.setState({
       persons: [
-        { name: 'Awesome Darshan Forever', age: 28 },
+        { name: "Awesome Darshan Forever", age: 28 },
         { name: event.target.value, age: 39 },
         { name: "Pandu", age: 2 },
       ],
     });
-  }
+  };
 
   render() {
+    // dont use inline syles
+    const style = {
+      backgroundColor: "white",
+      font: "inherit",
+      boder: "1px solid blue",
+      padding: "8px",
+      cursor: 'pointer'
+    };
+
     return (
       <div className="App">
         <h1>Hi, I am a React App {Math.floor(Math.random() * 16)}</h1>
         <p>This is working</p>
-        <button onClick={() => this.switchNameHandler("AWesome Darshan")}>
+        <button style={style} onClick={() => this.switchNameHandler("AWesome Darshan")}>
           Switch Name
         </button>
         <Person
