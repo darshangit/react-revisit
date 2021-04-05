@@ -45,7 +45,7 @@ class App extends Component {
   render() {
     // dont use inline syles
     const style = {
-      backgroundColor: "white",
+      backgroundColor: "green",
       font: "inherit",
       boder: "1px solid blue",
       padding: "8px",
@@ -82,12 +82,23 @@ class App extends Component {
           /> */}
         </div>
       );
+      style.backgroundColor = "red";
+    }
+
+    let classes = []; // red bold - these classes are in CSS
+
+    if (this.state.persons.length <= 2) {
+      classes.push("red-color");
+    }
+
+    if (this.state.persons.length <= 1) {
+      classes.push("bold-color");
     }
 
     return (
       <div className="App">
         <h1>Hi, I am a React App {Math.floor(Math.random() * 16)}</h1>
-        <p>This is working</p>
+        <p className={classes.join(" ")}>This is working</p>
         <button style={style} onClick={this.togglePersonHandler}>
           Toggle
         </button>
