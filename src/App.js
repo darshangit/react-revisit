@@ -10,6 +10,7 @@ class App extends Component {
       { name: "Pandu", age: 2 },
     ],
     otherState: "some other value",
+    showPersons: false,
   };
 
   switchNameHandler = (newName) => {
@@ -32,6 +33,12 @@ class App extends Component {
     });
   };
 
+  togglePersonHandler = () => {
+    this.setState({
+      showPersons: !this.state.showPersons
+    })
+  };
+
   render() {
     // dont use inline syles
     const style = {
@@ -39,28 +46,32 @@ class App extends Component {
       font: "inherit",
       boder: "1px solid blue",
       padding: "8px",
-      cursor: 'pointer'
+      cursor: "pointer",
     };
 
     return (
       <div className="App">
         <h1>Hi, I am a React App {Math.floor(Math.random() * 16)}</h1>
         <p>This is working</p>
-        <button style={style} onClick={() => this.switchNameHandler("AWesome Darshan")}>
-          Switch Name
+        <button style={style} onClick={this.togglePersonHandler}>
+          Toggle
         </button>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-          click={this.switchNameHandler.bind(this, "Donkey")}
-        >
-          My Hobbies Racing
-        </Person>
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          changed={this.nameChangeHandler}
-        />
+        {this.state.showPersons ? (
+          <div>
+            <Person
+              name={this.state.persons[0].name}
+              age={this.state.persons[0].age}
+              click={this.switchNameHandler.bind(this, "Donkey")}
+            >
+              My Hobbies Racing
+            </Person>
+            <Person
+              name={this.state.persons[1].name}
+              age={this.state.persons[1].age}
+              changed={this.nameChangeHandler}
+            />
+          </div>
+        ) : null}
       </div>
     );
   }
