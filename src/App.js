@@ -5,21 +5,26 @@ import Person from "./Person/Person";
 class App extends Component {
   state = {
     persons: [
-      { id: 'asdasd', name: "Priya", age: 29 },
-      { id: 'fefs', name: "Dash", age: 28 },
-      { id: 'sfhhjf', name: "Pandu", age: 2 },
+      { id: "asdasd", name: "Priya", age: 29 },
+      { id: "fefs", name: "Dash", age: 28 },
+      { id: "sfhhjf", name: "Pandu", age: 2 },
     ],
     otherState: "some other value",
     showPersons: false,
   };
 
-  nameChangeHandler = (event) => {
+  nameChangeHandler = (event, id) => {
+    //always work with copys of state - not the actual object
+    const personIndex = this.state.persons.findIndex((p) => p.id === id);
+    const person = { ...this.state.persons[personIndex] };
+
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
     this.setState({
-      persons: [
-        { name: "Awesome Darshan Forever", age: 28 },
-        { name: event.target.value, age: 39 },
-        { name: "Pandu", age: 2 },
-      ],
+      persons: persons,
     });
   };
 
@@ -28,7 +33,7 @@ class App extends Component {
     // always update state in immutable way
     const person = [...this.state.persons];
     person.splice(index, 1);
-    this.setState({persons: person});
+    this.setState({ persons: person });
   };
 
   togglePersonHandler = () => {
@@ -59,6 +64,7 @@ class App extends Component {
                 name={p.name}
                 age={p.age}
                 key={p.id}
+                changed={(event) => this.nameChangeHandler(event, p.id)}
               />
             );
           })}
