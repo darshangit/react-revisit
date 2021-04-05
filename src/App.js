@@ -1,9 +1,21 @@
 import { Component } from "react";
 import "./App.css";
 // import Radium, { StyleRoot } from "radium";
-
+import styled from "styled-components";
 import Person from "./Person/Person";
 
+const StyledButton = styled.button`
+  background-color: ${(props) => (props.alt ? "red" : "green")};
+  font: inherit;
+  boder: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${(props) => (props.alt ? "salmon" : "lightgreen")};
+    color: black;
+  }
+`;
 class App extends Component {
   state = {
     persons: [
@@ -45,18 +57,18 @@ class App extends Component {
   };
 
   render() {
-    // dont use inline syles
-    const style = {
-      backgroundColor: "green",
-      font: "inherit",
-      boder: "1px solid blue",
-      padding: "8px",
-      cursor: "pointer",
-      ":hover": {
-        backgroundColor: "lightgreen",
-        color: "black",
-      },
-    };
+    //dont use inline syles
+    // const style = {
+    //   backgroundColor: "green",
+    //   font: "inherit",
+    //   boder: "1px solid blue",
+    //   padding: "8px",
+    //   cursor: "pointer",
+    //   ":hover": {
+    //     backgroundColor: "lightgreen",
+    //     color: "black",
+    //   },
+    // };
 
     let persons = null;
 
@@ -88,11 +100,11 @@ class App extends Component {
           /> */}
         </div>
       );
-      style.backgroundColor = "red";
-      style[":hover"] = {
-        backgroundColor: "salmon",
-        color: "black",
-      };
+      // style.backgroundColor = "red";
+      // style[":hover"] = {
+      //   backgroundColor: "salmon",
+      //   color: "black",
+      // };
     }
 
     let classes = []; // red bold - these classes are in CSS
@@ -107,15 +119,18 @@ class App extends Component {
 
     return (
       // <StyleRoot>
-        <div className="App">
-          <h1>Hi, I am a React App {Math.floor(Math.random() * 16)}</h1>
-          <p className={classes.join(" ")}>This is working</p>
-          <button style={style} onClick={this.togglePersonHandler}>
-            Toggle
-          </button>
-          {persons}
-        </div>
-      // </StyleRoot> 
+      <div className="App">
+        <h1>Hi, I am a React App {Math.floor(Math.random() * 16)}</h1>
+        <p className={classes.join(" ")}>This is working</p>
+        <StyledButton
+          alt={this.state.showPersons}
+          onClick={this.togglePersonHandler}
+        >
+          Toggle
+        </StyledButton>
+        {persons}
+      </div>
+      // </StyleRoot>
     );
   }
 
