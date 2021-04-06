@@ -1,7 +1,21 @@
 import { Component } from "react";
 import cssClasses from "./App.css";
+// import Radium, { StyleRoot } from "radium";
+import styled from "styled-components";
 import Person from "./Person/Person";
 
+const StyledButton = styled.button`
+  background-color: ${(props) => (props.alt ? "red" : "green")};
+  font: inherit;
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${(props) => (props.alt ? "salmon" : "lightgreen")};
+    color: black;
+  }
+`;
 class App extends Component {
   state = {
     persons: [
@@ -29,6 +43,8 @@ class App extends Component {
   };
 
   deletePersonHandler = (index) => {
+    // const person = this.state.persons.slice(); // will return a new array
+    // always update state in immutable way
     const person = [...this.state.persons];
     person.splice(index, 1);
     this.setState({ persons: person });
@@ -41,8 +57,21 @@ class App extends Component {
   };
 
   render() {
+    //dont use inline syles
+    // const style = {
+    //   backgroundColor: "green",
+    //   font: "inherit",
+    //   boder: "1px solid blue",
+    //   padding: "8px",
+    //   cursor: "pointer",
+    //   ":hover": {
+    //     backgroundColor: "lightgreen",
+    //     color: "black",
+    //   },
+    // };
+
     let persons = null;
-    let btnClass = "";
+    let btnClass = '';
     if (this.state.showPersons) {
       persons = (
         <div>
@@ -57,13 +86,29 @@ class App extends Component {
               />
             );
           })}
+          {/* <Person
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age}
+            click={this.switchNameHandler.bind(this, "Donkey")}
+          >
+            My Hobbies Racing
+          </Person>
+          <Person
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age}
+            changed={this.nameChangeHandler}
+          /> */}
         </div>
       );
 
       btnClass = cssClasses.Red;
+      // style.backgroundColor = "red";
+      // style[":hover"] = {
+      //   backgroundColor: "salmon",
+      //   color: "black",
+      // };
     }
 
-    console.log(btnClass);
     let classes = []; // red bold - these classes are in CSS
 
     if (this.state.persons.length <= 2) {
@@ -75,21 +120,33 @@ class App extends Component {
     }
 
     return (
+      // <StyleRoot>
       <div className={cssClasses.App}>
         <h1>Hi, I am a React App {Math.floor(Math.random() * 16)}</h1>
         <p className={classes.join(" ")}>This is working</p>
-
-        <button
-          className={btnClass}
+        {/* <StyledButton
           alt={this.state.showPersons}
           onClick={this.togglePersonHandler}
         >
           Toggle
+        </StyledButton> */}
+
+        <button className={btnClass} alt={this.state.showPersons} onClick={this.togglePersonHandler}>
+          Toggle
         </button>
         {persons}
       </div>
+      // </StyleRoot>
     );
   }
+
+  // return React.createElement(
+  //   "div",
+  //   {className: 'App'},
+  //   React.createElement("h1", null, "Hi, I am a React App")
+  // );
 }
 
 export default App;
+
+// export default Radium(App);
