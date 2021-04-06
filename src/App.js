@@ -1,5 +1,5 @@
 import { Component } from "react";
-import "./App.css";
+import cssClasses from "./App.css";
 // import Radium, { StyleRoot } from "radium";
 import styled from "styled-components";
 import Person from "./Person/Person";
@@ -7,7 +7,7 @@ import Person from "./Person/Person";
 const StyledButton = styled.button`
   background-color: ${(props) => (props.alt ? "red" : "green")};
   font: inherit;
-  boder: 1px solid blue;
+  border: 1px solid blue;
   padding: 8px;
   cursor: pointer;
 
@@ -71,7 +71,7 @@ class App extends Component {
     // };
 
     let persons = null;
-
+    let btnClass = '';
     if (this.state.showPersons) {
       persons = (
         <div>
@@ -100,6 +100,8 @@ class App extends Component {
           /> */}
         </div>
       );
+
+      btnClass = cssClasses.Red;
       // style.backgroundColor = "red";
       // style[":hover"] = {
       //   backgroundColor: "salmon",
@@ -107,27 +109,32 @@ class App extends Component {
       // };
     }
 
+    console.log(btnClass)
     let classes = []; // red bold - these classes are in CSS
 
     if (this.state.persons.length <= 2) {
-      classes.push("red-color");
+      classes.push(cssClasses.redColor);
     }
 
     if (this.state.persons.length <= 1) {
-      classes.push("bold-color");
+      classes.push(cssClasses.boldColor);
     }
 
     return (
       // <StyleRoot>
-      <div className="App">
+      <div className={cssClasses.App}>
         <h1>Hi, I am a React App {Math.floor(Math.random() * 16)}</h1>
         <p className={classes.join(" ")}>This is working</p>
-        <StyledButton
+        {/* <StyledButton
           alt={this.state.showPersons}
           onClick={this.togglePersonHandler}
         >
           Toggle
-        </StyledButton>
+        </StyledButton> */}
+
+        <button className={btnClass} alt={this.state.showPersons} onClick={this.togglePersonHandler}>
+          Toggle
+        </button>
         {persons}
       </div>
       // </StyleRoot>
