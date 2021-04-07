@@ -2,7 +2,7 @@ import { Component } from "react";
 import cssClasses from "./App.css";
 // import Radium, { StyleRoot } from "radium";
 import styled from "styled-components";
-import Person from "./Person/Person";
+import Person from "../components/People/Person/Person";
 
 const StyledButton = styled.button`
   background-color: ${(props) => (props.alt ? "red" : "green")};

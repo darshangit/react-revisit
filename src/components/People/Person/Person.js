@@ -1,11 +1,11 @@
 import cssClasses from "./Person.css";
 
 const person = (props) => {
-  const rnd = Math.random();
+  // const rnd = Math.random();
 
-  if (rnd > 0.7) {
-    throw new Error("wrong");
-  }
+  // if (rnd > 0.7) {
+  //   throw new Error("wrong");
+  // }
   return (
     <div className={cssClasses.Person}>
       <p onClick={props.click}>
