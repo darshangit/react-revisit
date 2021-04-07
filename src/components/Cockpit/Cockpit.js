@@ -1,21 +1,41 @@
+import React, { useEffect } from "react";
 import cssClasses from "./Cockpit.css";
 
-const cockpit = (props) => {
+const Cockpit = (props) => {
+  useEffect(() => {
+    console.log("[cockpit.js] use effect");
+    setTimeout(() => {
+      alert("Saved data to cloud");
+    }, 1000);
 
-    let classes = []; // red bold - these classes are in CSS
-    let btnClass = '';
+    return () => {
+      console.log("[cockpit.js] clean");
+    };
+  }, []); // [props.persons] will execute only when a perticular props change
+  // for rendering only first time pass empty array
 
-    if(props.showPersons){
-        btnClass = cssClasses.Red;
-    }
+  useEffect(() => {
+    console.log("[cockpit.js] 2nd use effect");
 
-    if (props.persons.length <= 2) {
-      classes.push(cssClasses.redColor);
-    }
+    return () => {
+      console.log("[cockpit.js] 2nd clean");
+    };
+  });
 
-    if (props.persons.length <= 1) {
-      classes.push(cssClasses.boldColor);
-    }
+  let classes = []; // red bold - these classes are in CSS
+  let btnClass = "";
+
+  if (props.showPersons) {
+    btnClass = cssClasses.Red;
+  }
+
+  if (props.persons.length <= 2) {
+    classes.push(cssClasses.redColor);
+  }
+
+  if (props.persons.length <= 1) {
+    classes.push(cssClasses.boldColor);
+  }
 
   return (
     <div className={cssClasses.Cockpit}>
@@ -33,4 +53,4 @@ const cockpit = (props) => {
   );
 };
 
-export default cockpit;
+export default Cockpit;

@@ -12,6 +12,10 @@ class People extends Component {
     return true;
   }
 
+  componentWillUnmount(){
+      console.log("[People.js] componentWillUnmount");
+}
+
   render() {
     console.log("[People.js] rendering");
 
