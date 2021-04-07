@@ -4,6 +4,11 @@ import People from "../components/People/People";
 import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log("[App.js] constructor");
+  }
+
   state = {
     persons: [
       { id: "asdasd", name: "Priya", age: 29 },
@@ -13,6 +18,15 @@ class App extends Component {
     otherState: "some other value",
     showPersons: false,
   };
+
+  static getDerivedStateFromProps(props, state) {
+    console.log("[App.js] getDerivedStateFromProps", props);
+    return state;
+  }
+
+  componentDidMount() {
+    console.log("[App.js] component did mount");
+  }
 
   nameChangeHandler = (event, id) => {
     //always work with copys of state - not the actual object
@@ -42,6 +56,7 @@ class App extends Component {
   };
 
   render() {
+    console.log("[App.js] render");
     let persons = null;
     if (this.state.showPersons) {
       persons = (
@@ -56,6 +71,7 @@ class App extends Component {
     return (
       <div className={cssClasses.App}>
         <Cockpit
+          title={this.props.appTitle} // this prop is coming from index.js
           showPersons={this.state.showPersons}
           persons={this.state.persons}
           clicked={this.togglePersonHandler}
