@@ -9,12 +9,12 @@ class People extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     console.log("[People.js] shouldComponentUpdate");
-    return true;
+    return nextProps.persons !== this.props.persons;
   }
 
-  componentWillUnmount(){
-      console.log("[People.js] componentWillUnmount");
-}
+  componentWillUnmount() {
+    console.log("[People.js] componentWillUnmount");
+  }
 
   render() {
     console.log("[People.js] rendering");
