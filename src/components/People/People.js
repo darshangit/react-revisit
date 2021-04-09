@@ -1,16 +1,21 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import Person from "./Person/Person";
 
-class People extends Component {
+class People extends PureComponent {
   //   static getDerivedStateFromProps(props, state) {
   //     console.log("[People.js] getDerivedStateFromProps");
   //     return state;
   //   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log("[People.js] shouldComponentUpdate");
-    return nextProps.persons !== this.props.persons;
-  }
+  //if we have to check all the properties - do not use changed but extend a pureComponent
+//   shouldComponentUpdate(nextProps, nextState) {
+//     console.log("[People.js] shouldComponentUpdate");
+//     return (
+//       nextProps.persons !== this.props.persons ||
+//       nextProps.clicked !== this.props.clicked ||
+//       nextProps.changed !== this.props.changed
+//     );
+//   }
 
   componentWillUnmount() {
     console.log("[People.js] componentWillUnmount");
