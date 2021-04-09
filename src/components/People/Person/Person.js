@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Aux from "../../../hoc/Aux";
-import WithClass from "../../../hoc/WithClass";
+import WithClass from "../../../hoc/withClass";
 import cssClasses from "./Person.css";
 
 class Person extends Component {
@@ -8,7 +8,7 @@ class Person extends Component {
     console.log("[Person.js] render");
 
     return (
-      <WithClass classes={cssClasses.Person}>
+      <Aux classes={cssClasses.Person}>
         <p key="i1" onClick={this.props.click}>
           I'm a {this.props.name} and am {this.props.age} old!
         </p>
@@ -19,7 +19,7 @@ class Person extends Component {
           onChange={this.props.changed}
           value={this.props.name}
         />
-      </WithClass>
+      </Aux>
     );
   }
 }
