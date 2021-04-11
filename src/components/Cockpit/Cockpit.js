@@ -1,16 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import cssClasses from "./Cockpit.css";
 
 const Cockpit = (props) => {
+  const toggleBtnRef = useRef(null);
+
+  //**********useeffect runs after render
   useEffect(() => {
     console.log("[cockpit.js] use effect");
-    const timer = setTimeout(() => {
-      alert("Saved data to cloud");
-    }, 1000);
+    // const timer = setTimeout(() => {
+    //   //   alert("Saved data to cloud");
+    // }, 1000);
+    toggleBtnRef.current.click();
 
     // if you have a method it is used for clean up work
     return () => {
-      clearTimeout(timer);
+    //   clearTimeout(timer);
       console.log("[cockpit.js] clean");
     };
   }, []); // [props.persons] will execute only when a perticular props change
@@ -44,7 +48,7 @@ const Cockpit = (props) => {
       <h1>{props.title}</h1>
       <p className={classes.join(" ")}>This is working</p>
 
-      <button
+      <button ref={toggleBtnRef}
         className={btnClass}
         alt={props.showPersons}
         onClick={props.clicked}
