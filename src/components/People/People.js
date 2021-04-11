@@ -8,14 +8,14 @@ class People extends PureComponent {
   //   }
 
   //if we have to check all the properties - do not use changed but extend a pureComponent
-//   shouldComponentUpdate(nextProps, nextState) {
-//     console.log("[People.js] shouldComponentUpdate");
-//     return (
-//       nextProps.persons !== this.props.persons ||
-//       nextProps.clicked !== this.props.clicked ||
-//       nextProps.changed !== this.props.changed
-//     );
-//   }
+  //   shouldComponentUpdate(nextProps, nextState) {
+  //     console.log("[People.js] shouldComponentUpdate");
+  //     return (
+  //       nextProps.persons !== this.props.persons ||
+  //       nextProps.clicked !== this.props.clicked ||
+  //       nextProps.changed !== this.props.changed
+  //     );
+  //   }
 
   componentWillUnmount() {
     console.log("[People.js] componentWillUnmount");
