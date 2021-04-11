@@ -11,9 +11,13 @@ class Person extends Component {
     this.inputElementRef = React.createRef();
   }
 
+  // should exactly be named static contextType - React 16.3
+  static contextType = AuthContext;
+
   componentDidMount() {
     // this.inputElement.focus(); // old method of setting refs
     this.inputElementRef.current.focus();
+    console.log(this.context.authenticated);
   }
   render() {
     console.log("[Person.js] render");
